@@ -23,6 +23,12 @@ public class MyPagerAdapter extends PagerAdapter {
         arry = new ArrayList<LinearLayout>();
         arry.add(new LinearLayout(context));
         arry.add(new LinearLayout(context));
+        arry.add(new LinearLayout(context));
+    }
+
+    @Override
+    public float getPageWidth(int position) {
+        return 0.93f;
     }
 
     @Override
@@ -45,11 +51,13 @@ public class MyPagerAdapter extends PagerAdapter {
 
         switch (position) {
             case 0:
-                v = inflater.inflate(R.layout.jaw, (ViewGroup) null, false);
+                v = inflater.inflate(R.layout.jaw, null, false);
                 break;
             case 1:
                 v = inflater.inflate(R.layout.hello, null, false);
                 break;
+            case 2:
+                v = inflater.inflate(R.layout.jaw, null, false);
             default:
 
 

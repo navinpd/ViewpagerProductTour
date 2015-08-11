@@ -27,9 +27,13 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Count = 2;
+        Count = 3;
 
         ViewPager vp = (ViewPager) findViewById(R.id.viewPager);
+        vp.setCurrentItem(0);
+        vp.setClipToPadding(false);
+        vp.setPageMargin(12);
+
         buttonHolder = (LinearLayout) findViewById(R.id.dots_holder);
 
         addChild();
@@ -40,7 +44,7 @@ public class MainActivity extends Activity {
         final TextView tvHeader = (TextView) findViewById(R.id.textViewHeader);
         tvHeader.setText("Page 1");
 
-        vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageScrollStateChanged(int arg0) {
