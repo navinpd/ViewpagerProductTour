@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ViewPagerSample.iml" filepath="$PROJECT_DIR$/ViewPagerSample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ViewpagerProductTour.iml" filepath="$PROJECT_DIR$/ViewpagerProductTour.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

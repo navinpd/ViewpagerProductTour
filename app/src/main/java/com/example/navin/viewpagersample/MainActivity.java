@@ -29,6 +29,10 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         ViewPager vp = (ViewPager) findViewById(R.id.viewPager);
+        vp.setCurrentItem(0);
+        vp.setClipToPadding(false);
+        vp.setPageMargin(12);
+
         buttonHolder = (LinearLayout) findViewById(R.id.dots_holder);
 
         addChild();

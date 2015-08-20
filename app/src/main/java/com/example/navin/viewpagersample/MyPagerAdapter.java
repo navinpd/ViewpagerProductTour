@@ -61,7 +61,6 @@ public class MyPagerAdapter extends PagerAdapter {
             case 3:
                 v = inflater.inflate(R.layout.hello, null, false);
                 break;
-
             default:
 
 
