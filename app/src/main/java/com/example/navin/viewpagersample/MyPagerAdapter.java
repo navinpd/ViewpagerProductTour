@@ -15,14 +15,12 @@ import java.util.ArrayList;
  */
 
 public class MyPagerAdapter extends PagerAdapter {
-    private ArrayList<LinearLayout> arry;
     Context context;
+    int count;
 
-    public MyPagerAdapter(Context context) {
+    public MyPagerAdapter(Context context, int count) {
         this.context = context;
-        arry = new ArrayList<LinearLayout>();
-        arry.add(new LinearLayout(context));
-        arry.add(new LinearLayout(context));
+        this.count = count;
     }
 
     @Override
@@ -32,7 +30,12 @@ public class MyPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return arry.size();
+        return count;
+    }
+
+    @Override
+    public float getPageWidth(int position) {
+        return 0.8f;
     }
 
     @Override
@@ -43,19 +46,28 @@ public class MyPagerAdapter extends PagerAdapter {
         final LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        switch (position) {
+        int value = position % 4;
+
+        switch (value) {
             case 0:
-                v = inflater.inflate(R.layout.jaw, (ViewGroup) null, false);
+                v = inflater.inflate(R.layout.jaw, null, false);
                 break;
             case 1:
                 v = inflater.inflate(R.layout.hello, null, false);
                 break;
+            case 2:
+                v = inflater.inflate(R.layout.jaw, null, false);
+                break;
+            case 3:
+                v = inflater.inflate(R.layout.hello, null, false);
+                break;
+
             default:
 
 
                 break;
         }
-        ((ViewPager) view).addView(v, 0);
+        ((ViewPager) view).addView(v, position);
 
         return v;
     }

@@ -21,62 +21,66 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
     LinearLayout buttonHolder;
-    int Count = 0;
+    int count = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Count = 2;
 
         ViewPager vp = (ViewPager) findViewById(R.id.viewPager);
         buttonHolder = (LinearLayout) findViewById(R.id.dots_holder);
 
         addChild();
 
-        MyPagerAdapter adapter = new MyPagerAdapter(this);
+        MyPagerAdapter adapter = new MyPagerAdapter(this, count);
+
+        vp.setPageMargin(30);
+//        vp.setMotionEventSplittingEnabled(true);
         vp.setAdapter(adapter);
+
+        vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                highlightPage(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         final TextView tvHeader = (TextView) findViewById(R.id.textViewHeader);
         tvHeader.setText("Page 1");
 
-        vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+    }
 
-            @Override
-            public void onPageScrollStateChanged(int arg0) {
-            }
-
-            @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
-            }
-
-            @Override
-            public void onPageSelected(int arg0) {
-                tvHeader.setText("Page " + (arg0 + 1));
-
-                for (int i = 0; i < Count; i++) {
-                    ImageView circle = (ImageView) buttonHolder.getChildAt(i);
-                    if (i == arg0) {
-                        circle.setColorFilter(getResources().getColor(R.color.text_selected));
-                    } else {
-                        circle.setColorFilter(getResources().getColor(android.R.color.transparent));
-                    }
+    private void highlightPage(int position) {
+        if (position < count)
+            for (int i = 0; i < count; i++) {
+                ImageView circle = (ImageView) buttonHolder.getChildAt(i);
+                if (i == position) {
+                    circle.setColorFilter(getResources().getColor(R.color.text_selected));
+                } else {
+                    circle.setColorFilter(getResources().getColor(android.R.color.transparent));
                 }
             }
-
-        });
-
     }
 
     private void addChild() {
-        for (int i = 0; i < Count; i++) {
+        for (int i = 0; i < count; i++) {
             ImageView iv = new ImageView(this);
             iv.setImageResource(R.drawable.ic_swipe_indicator_white_18dp);
             buttonHolder.addView(iv);
         }
+        highlightPage(0);
 
-        ImageView view1 = (ImageView) buttonHolder.getChildAt(0);
-        view1.setColorFilter(getResources().getColor(R.color.text_selected));
     }
 
 }
